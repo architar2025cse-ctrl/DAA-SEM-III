@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <stdlib.h>
+// Recursive function to find two elements whose sum equals x
+int findPairRecursive(int arr[], int left, int right, int x, int *a, int *b) {
+// Base case: no pair found
+if (left >= right) {
+return 0;
+}
+int sum = arr[left] + arr[right];
+if (sum == x) {
+*a = arr[left];
+*b = arr[right];
+return 1; // Pair found
+}
+else if (sum < x) {
+// Move left pointer to the right
+return findPairRecursive(arr, left + 1, right, x, a, b);
+}
+else {
+// Move right pointer to the left
+return findPairRecursive(arr, left, right - 1, x, a, b);
+}
+}
+int main() {
+int n;
+if (scanf("%d", &n) != 1 || n <= 0) {
+return 0; // Invalid input
+}
+int *arr = malloc(n * sizeof(int));
+if (!arr) return 0; // Memory allocation failed
+for (int i = 0; i < n; i++) {
+if (scanf("%d", &arr[i]) != 1) {
+free(arr);
+return 0; // Invalid input
+}
+}
+int x;
+if (scanf("%d", &x) != 1) {
+free(arr);
+return 0;
+}
+int a, b;
+if (findPairRecursive(arr, 0, n - 1, x, &a, &b)) {
+printf("%d\n%d\n", a, b);
+}
