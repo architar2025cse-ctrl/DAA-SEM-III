@@ -1,0 +1,20 @@
+#include <stdio.h>
+void factor(int num) {
+int count = 0;
+count++; // initialization of i = 1
+for(int i = 1 ; i <= num ; i++) {
+count++; // for the times of valid condition checks
+count++; // for i++
+if(num % i == 0) {
+count ++; // for the count of times of execution of if condition
+//printf("%d ", i);
+}
+}
+printf("%d", count);
+}
+int main() {
+int n;
+scanf("%d", &n);
+factor(n);
+return 0;
+}
